@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+        <title>微信后台管理</title>
+    {% end %}
+    <link rel="stylesheet" href="{{ static_url('css/bootstrap.min.css') }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ static_url('css/site.css') }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ static_url('css/bootstrap-responsive.min.css') }}" type="text/css" media="screen" />
+    {% block css %}
+
+    {% end %}
+</head>
+<body>
+    {% block nav %}
+        {% include 'nav.html' %}
+    {% end %}
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            {% block left %}
+                {% include 'left.html' %}
+            {% end %}
+
+            {% block content %}
+
+            {% end %}
+        </div>
+
+      <hr>
+        {% block footer %}
+            {% include 'footer.html' %}
+        {% end %}
+    </div>
+</body>
+    <script src="{{ static_url('js/jquery-1.12.3.min.js') }}"></script>
+    <script src="{{ static_url('js/bootstrap.min.js') }}"></script>
+    <script src="{{ static_url('js/html5.js') }}"></script>
+    {% block js %}
+
+    {% end %}
+</html>
