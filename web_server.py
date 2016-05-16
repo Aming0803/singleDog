@@ -4,6 +4,7 @@ import os
 
 from tornado.web import Application
 from admin.urls import admin_handlers
+from apps.urls import apps_handlers
 import tornado
 from tornado.options import define
 from tornado.options import options
@@ -19,6 +20,7 @@ tornado.options.parse_command_line()
 
 handlers = []
 handlers.extend(admin_handlers)
+handlers.extend(apps_handlers)
 
 current_path = os.path.dirname(__file__)
 static_path = os.path.join(current_path, 'static')
