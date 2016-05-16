@@ -81,20 +81,3 @@ def sort_list_by_asc(data_list):
 
 
 
-
-
-
-
-
-if __name__ == '__main__':
-    test_str = Template("""
-        $name1: $age1,
-        $name2: $age2,
-    """)
-
-    my_list = [6, 5, 7, 3, 1, 8, 2, 10, 4]
-    time_list = [u'2016-03-28', u'2016-03-14', u'2016-03-13', u'2016-03-21', u'2016-05-02', u'2016-04-02']
-    print sorted(time_list)
-    print sort_list_by_asc(time_list)
-
-    # print create_order_id()

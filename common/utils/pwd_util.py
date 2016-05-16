@@ -1,9 +1,5 @@
 # -*- coding:utf-8 -*-
 import hashlib
-import os
-from common.common_settings import USER_SECRET
-
-__author__ = 'shenhai'
 
 
 
@@ -11,25 +7,22 @@ __author__ = 'shenhai'
 
 
 def create_md5(args):
+    """
+    md5加密
+    :param args:
+    :return:
+    """
     md5_constructor = hashlib.md5
     return md5_constructor(args).hexdigest()
 
 
-
-
-def user_pwd_digest(passwd):
+def create_sha1(val):
     """
-    用户加密密码处理
-    :param passwd:
+    sha1加密
+    :param val:
     :return:
     """
-    ttt=USER_SECRET + passwd
-    return create_md5(ttt)
+    if not val:
+        return False
 
-
-
-if __name__ == '__main__':
-    # passwd = 'wan888'
-    # print user_pwd_digest(passwd)
-    key = "1450695025498"+ "d196371019e3bc82"
-    print create_md5(key)
+    return hashlib.sha1(val).hexdigest()

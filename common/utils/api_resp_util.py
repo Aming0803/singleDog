@@ -3,6 +3,7 @@ __author__ = 'wan'
 
 import json
 
+
 class CommonApiResponse(object):
 
     def __init__(self, data='', msg='', success=False, count=0):
