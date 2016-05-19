@@ -5,13 +5,14 @@ __author__ = 'wan'
 import time
 
 from .messages import WXAcceptMessageBase
+from .events import WXEventBase
 
 
 class WXChatReply(object):
     def __init__(self, message=None, **kwargs):
-        if 'source' not in kwargs and isinstance(message, WXAcceptMessageBase):
+        if 'source' not in kwargs and isinstance(message, (WXAcceptMessageBase, WXEventBase)):
             kwargs['source'] = message.target
-        if 'target' not in kwargs and isinstance(message, WXAcceptMessageBase):
+        if 'target' not in kwargs and isinstance(message, (WXAcceptMessageBase, WXEventBase)):
             kwargs['target'] = message.source
         if 'time' not in kwargs:
             kwargs['time'] = int(time.time())
@@ -46,7 +47,7 @@ class TextReply(WXChatReply):
         super(TextReply, self).__init__(message=message, content=content)
 
     def render(self):
-        
+
         return TextReply.TEMPLATE.format(**self._args)
 
 
@@ -261,3 +262,9 @@ class GroupTransferReply(WXChatReply):
 
     def render(self):
         return GroupTransferReply.TEMPLATE.format(**self._args)
+
+
+
+
+if __name__ == '__main__':
+    message_dict = {"event": "subscribe", "source": "oFzUwwAKJ_mA9cCccJegX0Z9nD-g", "type": "event", "target": "gh_c93df7839099", "time": 1463650146}
