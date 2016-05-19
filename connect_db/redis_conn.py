@@ -26,5 +26,7 @@ class RedisManger(object):
         return redis.Redis(connection_pool = pool)
 
 
+REDIS_DB = RedisManger().conn
+
 
 

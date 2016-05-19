@@ -4,7 +4,11 @@ __author__ = 'wan'
 
 from common.handlers.app_base_handler import AppBaseHandler
 from common.wx_sdk.config import WX_TOKEN
-from common.utils.pwd_util import create_sha1
+from common.wx_sdk.base import WXChatBase
+
+import logging
+import traceback
+log = logging.getLogger(__file__)
 
 
 class WxIndexHandler(AppBaseHandler):
@@ -23,10 +27,8 @@ class WxIndexHandler(AppBaseHandler):
             return self.write("无效请求")
 
         #todo:验证签名
-        sign_list = [WX_TOKEN, timestamp, nonce]
-        sign_list.sort()
-        sign_str = "".join(sign_list)
-        sign = create_sha1(sign_str)
+        wx_chat = WXChatBase()
+        sign = wx_chat.get_access_sign(token=WX_TOKEN, timestamp=timestamp, nonce=nonce)
 
         if sign == signature:
             return self.write(echostr)
@@ -38,3 +40,20 @@ class WxIndexHandler(AppBaseHandler):
         进行相关操作
         :return:
         """
+        data = self.request.body
+        wx_chat = WXChatBase()
+
+        #ps.1.解析xml数据
+        wx_chat.parse_data(data)
+
+        #ps.2.根据解析出来的message进行逻辑处理
+        message = wx_chat.message
+        log.info("***********接收到的消息数据:{0}***********".format(message))
+
+        #ps.3.返回消息
+        resp = wx_chat.get_access_index()
+        log.info("***********返回的消息数据:{0}***********".format(resp))
+        
+        return self.write(resp)
+
+

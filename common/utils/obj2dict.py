@@ -18,3 +18,24 @@ def modelObj2Dict(obj):
             continue
 
     return d
+
+
+class ObjectDict(dict):
+    """
+    dict use like object
+    """
+    def __getattr__(self, item):
+        if item in self:
+            return self[item]
+        return None
+
+    def __setattr__(self, key, value):
+        self[key] = value
+
+
+
+
+if __name__ == '__main__':
+    test = {'a':1, "b":2}
+    new_obj = ObjectDict(test)
+    print new_obj.a
