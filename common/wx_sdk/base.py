@@ -68,7 +68,7 @@ class WXChatBase(object):
             else:
                 event_class = EVENT_TYPES[event]
 
-            self._message = event_class[result]
+            self._message = event_class(result)
 
         else:
             message_class = MESSAGE_TYPES[msg_type]

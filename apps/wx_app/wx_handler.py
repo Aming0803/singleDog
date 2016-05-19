@@ -53,7 +53,7 @@ class WxIndexHandler(AppBaseHandler):
         #ps.3.返回消息
         resp = wx_chat.get_access_index()
         log.info("***********返回的消息数据:{0}***********".format(resp))
-        
+
         return self.write(resp)
 
 
