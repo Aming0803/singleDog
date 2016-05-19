@@ -1,7 +1,7 @@
 #coding=utf-8
 __author__ = 'wan'
 
-
+import json
 EVENT_TYPES = {}
 
 
@@ -30,6 +30,13 @@ class WXEventBase(object):
         self.type = message.pop("MsgType", "event")
         self.event = message.pop("Event", "")
         self.__dict__.update(message)
+
+    def convert_to_json(self):
+        """
+        转化成json数据
+        :return:
+        """
+        return json.dumps(self.__dict__)
 
 
 @event_type("subscribe")

@@ -46,6 +46,7 @@ class TextReply(WXChatReply):
         super(TextReply, self).__init__(message=message, content=content)
 
     def render(self):
+        
         return TextReply.TEMPLATE.format(**self._args)
 
 

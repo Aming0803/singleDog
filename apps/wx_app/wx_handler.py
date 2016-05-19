@@ -48,11 +48,11 @@ class WxIndexHandler(AppBaseHandler):
 
         #ps.2.根据解析出来的message进行逻辑处理
         message = wx_chat.message
-        log.info("***********接收到的消息数据:{0}***********".format(message))
+        log.info(u"***********接收到的消息数据:{0}***********".format(message.convert_to_json()))
 
         #ps.3.返回消息
         resp = wx_chat.get_access_index()
-        log.info("***********返回的消息数据:{0}***********".format(resp))
+        log.info(u"***********返回的消息数据:{0}***********".format(resp))
 
         return self.write(resp)
 

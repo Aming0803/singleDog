@@ -1,7 +1,7 @@
 #coding=utf-8
 __author__ = 'wan'
 
-
+import json
 MESSAGE_TYPES = {}
 
 
@@ -31,6 +31,13 @@ class WXAcceptMessageBase(object):
         self.time = int(message.pop("CreateTime", 0))
         self.type = message.pop("MsgType", "")
         self.__dict__.update(message)
+
+    def convert_to_json(self):
+        """
+        转化成json数据
+        :return:
+        """
+        return json.dumps(self.__dict__)
 
 
 @message_type("text")
