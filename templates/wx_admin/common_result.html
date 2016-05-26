@@ -1,0 +1,26 @@
+{% extends "wx_base.html" %}
+
+{% block content %}
+<div class="span9">
+<div class="row-fluid">
+    <div class="page-header">
+        <h1>{{ title }}</h1>
+    </div>
+    {% if success %}
+        <div class="alert alert-success" role="alert" id="success">{{ msg }}</div>
+    {% else %}
+        <div class="alert alert-danger" role="alert" id="danger">{{ msg }}</div>
+    {% end %}
+
+    <div>
+        <input onclick="reBack()" type="button" class="btn btn-success btn-large" value="返回" />
+    </div>
+  </div>
+</div>
+{% end %}
+
+{% block js %}
+<script>
+
+</script>
+{% end %}

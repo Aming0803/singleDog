@@ -47,11 +47,11 @@ def union_by_same(my_list):
     return middle
 
 
-def create_order_id():
+def create_str_id():
     return '%.f' % (time.time() * 1000)
 
 
-def create_notify_id():
+def create_long_str_id():
     return '%.f' % (time.time() * 1000000)
 
 

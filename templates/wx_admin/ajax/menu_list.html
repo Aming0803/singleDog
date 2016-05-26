@@ -1,0 +1,14 @@
+<div class="control-group" id="parent_id">
+    <label class="control-label" for="role">父级菜单</label>
+    <div class="controls">
+        <select name="parent_id" id="parent_menu_id">
+            {% for menu in parent_menu_list %}
+                {% if wx_menu and wx_menu.parent_id == menu.id %}
+                    <option value="{{ menu.id }}" selected="selected">{{ menu.name }}</option>
+                {% else %}
+                    <option value="{{ menu.id }}">{{ menu.name }}</option>
+                {% end %}
+            {% end %}
+        </select>
+    </div>
+</div>

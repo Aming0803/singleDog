@@ -1,7 +1,7 @@
 body {
   padding-top: 60px;
   padding-bottom: 40px;
-  background: url('../img/bg.png');		
+  background: url('../images/bg.png');
 }
 .sidebar-nav {
   padding: 9px 0;
@@ -17,7 +17,7 @@ body {
   background-image: -o-linear-gradient(top, #134024, #00260e);
   background-image: linear-gradient(top, #134024, #00260e);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#'134024, endColorstr='#'00260e, GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#134024', endColorstr='#00260e', GradientType=0);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -82,7 +82,7 @@ a:hover {
 }
 .nav-pills > .active > a,
 .nav-pills > .active > a:hover {
-  background-color: ##51A351;
+  background-color: #51A351;
 }
 .dropdown-menu .nav-header {
   display: block;

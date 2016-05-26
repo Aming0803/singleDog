@@ -23,5 +23,12 @@ CELERY_ACCEPT_CONTENT=['json']
 ####custom queue and route
 default_exchange = Exchange('default', type='direct')
 
+#新建不同的queue
+CELERY_QUEUES = (
+    Queue('default', default_exchange, routing_key='default'),
+)
 
+CELERY_DEFAULT_QUEUE = 'default'
+CELERY_DEFAULT_EXCHANGE_TYPE = 'default'
+CELERY_DEFAULT_ROUTING_KEY = 'default'
 

@@ -28,7 +28,7 @@ class WXEventBase(object):
         self.source = message.pop("FromUserName", "")
         self.time = int(message.pop("CreateTime", 0))
         self.type = message.pop("MsgType", "event")
-        self.event = message.pop("Event", "")
+        self.event = message.pop("Event", "").lower()
         self.__dict__.update(message)
 
     def convert_to_json(self):

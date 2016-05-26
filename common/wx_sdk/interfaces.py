@@ -50,7 +50,7 @@ class WXAccessTokenApi(object):
             return ""
 
 
-class WXCustomViewApi(object):
+class WXCustomMenuApi(object):
 
     #https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN
     _request_url = "https://api.weixin.qq.com/cgi-bin/menu/create"
@@ -68,6 +68,9 @@ class WXCustomViewApi(object):
         :param params:
         :return:
         """
+
+        log.info(u"************菜单数据:{0}**************".format(params))
+
         if not isinstance(params, dict):
             return False, "参数格式不正确"
 
@@ -140,7 +143,6 @@ class WXUserInfoApi(object):
 
         else:
             return True, content
-
 
     def get_access_token(self):
         """

@@ -1,0 +1,87 @@
+{% extends "wx_base.html" %}
+
+{% block content %}
+<div class="span9">
+    {% from common.utils.template_util import MENU_TYPE %}
+    <div class="row-fluid">
+        <div class="page-header">
+            <h1>新增菜单</h1>
+        </div>
+        <div class="alert alert-success hidden" role="alert" id="success"></div>
+        <div class="alert alert-danger hidden" role="alert" id="danger"></div>
+        <form class="form-horizontal">
+            <fieldset>
+                {% module xsrf_form_html() %}
+                <input name="id" value="{{ menu_id }}" type="hidden" id="id">
+                <div class="control-group" id="menu_category">
+                    <label class="control-label" for="category">菜单级别</label>
+                    <div class="controls">
+                        <select name="category" id="category" >
+                            {% if wx_menu %}
+                                {% if wx_menu.category == 1 %}
+                                    <option value="1" selected="selected">一级菜单</option>
+                                    <option value="2">二级菜单</option>
+                                {% else %}
+                                    <option value="1">一级菜单</option>
+                                    <option value="2" selected="selected">二级菜单</option>
+                                {% end %}
+                            {% else %}
+                                <option value="1">一级菜单</option>
+                                <option value="2">二级菜单</option>
+                            {% end %}
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="name">菜单名称</label>
+                    <div class="controls">
+                        {% if wx_menu %}
+                            <input type="text" class="input-xlarge" id="name" name="name" value="{{ wx_menu.name }}" />
+                        {% else %}
+                            <input type="text" class="input-xlarge" id="name" name="name" />
+                        {% end %}
+                        <a id="menu_name" title="一级菜单最多4个汉字，二级菜单最多7个汉字，多出来的部分将会以“...”代替" data-toggle="tooltip" data-placement="right" class="glyphicon glyphicon-question-sign common-margin-left" aria-hidden="true"></a>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="menu_type">菜单类型</label>
+                    <div class="controls">
+                        <select name="menu_type" id="menu_type">
+                            {% for key, val in MENU_TYPE.iteritems() %}
+                                {% if wx_menu and wx_menu.menu_type == key %}
+                                    <option value="{{ key }}" selected="selected">{{ val }}</option>
+                                {% else %}
+                                    <option value="{{ key }}">{{ val }}</option>
+                                {% end %}
+                            {% end %}
+                        </select>
+                        <a id="menu_type_tooltip" title="&lt;p&gt;1.点击推事件:微信服务器会通过消息接口推送消息类型为event的结构给开发者.&lt;/p&gt;&lt;p&gt;2.跳转URL:微信客户端将会打开开发者在按钮中填写的网页URL.&lt;/p&gt;&lt;p&gt;3.下发消息（除文本消息）:微信服务器会将开发者填写的永久素材id对应的素材下发给用户，永久素材类型可以是图片、音频、视频、图文消息.&lt;/p&gt;&lt;p&gt;4.跳转图文消息URL:微信客户端将打开开发者在按钮中填写的永久素材id对应的图文消息URL.&lt;/p&gt;" data-toggle="tooltip" data-placement="right" class="glyphicon glyphicon-question-sign common-margin-left" aria-hidden="true"></a>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="value">菜单属性</label>
+                    <div class="controls">
+                        {% if wx_menu %}
+                            <input type="text" class="input-xlarge" id="value" name="value" value="{{ wx_menu.value }}"/>
+                        {% else %}
+                            <input type="text" class="input-xlarge" id="value" name="value" />
+                        {% end %}
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input id="submit" type="button" class="btn btn-success btn-large" value="确定" /> <a class="btn" onclick="reBack()">返回</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/tornado_xsrf.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/tools/add_menu.js') }}"></script>
+{% end %}

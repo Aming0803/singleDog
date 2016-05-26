@@ -33,7 +33,7 @@ settings = dict(
     template_path=template_path,
     cookie_secret='D/RKv/hSQQqs5I26h3BjkZHhhWc+UUo8gYQNMjNvJuY=',
     login_url='/login',
-    xsrf_cookies=False,
+    xsrf_cookies=True,
     debug=True,
     autoreload = True,
     xheaders=True

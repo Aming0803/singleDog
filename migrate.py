@@ -11,8 +11,9 @@ from models.base_model import Base
 from sqlalchemy import create_engine
 from connect_db.config import DB_URL
 
-from models.wx_model import WXMenuDO, WXUserDO
-
+from models.wx_model import WXMenuDO
+# from models.wx_model import WXConfigDO, WXImageUploadDO, WXMediaDO
+# from models.user_model import AdminUserDO
 
 
 

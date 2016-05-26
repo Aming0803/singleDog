@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信管理系统</title>
+    <link rel="stylesheet" href="{{ static_url('css/login-style.css') }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ static_url('css/my.css') }}" type="text/css" media="screen" />
+</head>
+<body>
+    <section class="container">
+        <div class="register-title"><h1>用户注册</h1></div>
+        <form class="admin-register" id="form" method="post" action="/register">
+            {% module xsrf_form_html() %}
+            <p>
+                <label>用户名:</label>
+                <input type="text" name="username" placeholder="" id="username" >
+            </p>
+
+            <p>
+                <label>密码:</label>
+                <input type="password" name="password" placeholder="" id="password">
+            </p>
+
+            <p>
+                <label>邮箱:</label>
+                <input type="text" name="email" placeholder="" id="email">
+            </p>
+
+            <p>
+                <label>联系方式:</label>
+                <input type="text" name="telephone" placeholder="" id="telephone">
+            </p>
+            {% if msg %}
+                <p class="login-warning">{{ msg }}</p>
+            {% end %}
+            <p class="login-warning" id="warning"></p>
+            <p class="submit">
+                <input type="submit" name="commit" value="确定">
+                <input type="button" value="返回">
+            </p>
+        </form>
+
+    </section>
+</body>
+ <script src="{{ static_url('js/jquery-1.12.3.min.js') }}"></script>
+ <script type="text/javascript" src="{{ static_url('js/tools/register_validate.js') }}"></script>
+</html>
+
