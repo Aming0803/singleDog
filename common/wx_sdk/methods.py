@@ -264,7 +264,7 @@ def wx_send_all_news_by_openid(media_id, open_id_list=None):
 
     #ps.群发图文数据格式
     data = {
-        "to_user": open_id_list,
+        "touser": open_id_list,
         "mpnews":{
             "media_id": media_id
         },
