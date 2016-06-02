@@ -8,8 +8,8 @@ from celery import Celery
 __author__ = 'wan'
 
 #*******************result & broker*************************#
-REDIS_URL = 'redis://:wmmishandsomeman123456@127.0.0.1:6379/1'
-# REDIS_URL = 'redis://127.0.0.1:6379/1'    #本机没有设置
+# REDIS_URL = 'redis://:wmmishandsomeman123456@127.0.0.1:6379/1'
+REDIS_URL = 'redis://127.0.0.1:6379/1'    #本机没有设置
 
 
 app = Celery('taskCelery',
