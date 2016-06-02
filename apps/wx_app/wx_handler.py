@@ -65,6 +65,13 @@ class WxIndexHandler(AppBaseHandler):
         log.info(u"***********返回的消息数据:{0}***********".format(resp))
         return self.write(resp)
 
+    def check_xsrf_cookie(self):
+        """
+        复写函数,此时不需要使用_xsrf
+        :return:
+        """
+        log.info("************微信回调URL不需要_xsrf************")
+
     def handler_the_event_message(self, wx_chat):
         """
         处理事件消息
