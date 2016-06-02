@@ -2,7 +2,7 @@
 __author__ = 'wan'
 
 import functools
-
+from tornado import httputil
 try:
     import urlparse  # py2
 except ImportError:

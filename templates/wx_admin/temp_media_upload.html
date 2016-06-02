@@ -1,0 +1,54 @@
+{% extends "wx_base.html" %}
+
+{% block content %}
+<div class="span9">
+    {% from common.utils.template_util import MEDIA_TYPE %}
+    <div class="row-fluid">
+        <div class="page-header">
+            <h1>微信添加临时素材</h1>
+        </div>
+        {% if msg %}
+            <div class="alert alert-danger" role="alert" id="danger">{{ msg }}</div>
+        {% end %}
+        <div class="alert alert-danger hidden" role="alert" id="danger"></div>
+        <form class="form-horizontal" enctype="multipart/form-data" action="/admin/wx/temp/media/add" method="post">
+            {% module xsrf_form_html() %}
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="type">素材类型</label>
+                    <div class="controls">
+                        <select name="type" id="type" class="input-xlarge">
+                            {% for key, val in MEDIA_TYPE.iteritems() %}
+                                <option value="{{ key }}" >{{ val }}</option>
+                            {% end %}
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="key">选择素材</label>
+                    <div class="controls">
+                        <input type="file" class="input-xlarge" id="source" name="source" />
+                        <a id="title" title="&lt;p&gt;1.图片（image）: 1M，支持JPG格式.&lt;/p&gt;&lt;p&gt;2.语音（voice）：2M，播放长度不超过60s，支持AMR\MP3格式.&lt;/p&gt;&lt;p&gt;3.视频（video）：10MB，支持MP4格式.&lt;/p&gt;&lt;p&gt;4.缩略图（thumb）：64KB，支持JPG格式.&lt;/p&gt;" data-toggle="tooltip" data-placement="right" class="glyphicon glyphicon-question-sign common-margin-left" aria-hidden="true"></a>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input id="submit" type="submit" class="btn btn-success btn-large" value="确定" /> <a class="btn" onclick="reBack()">返回</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+{% end %}
+
+{% block js %}
+<script type="text/javascript">
+    $(function(){
+        $("#temp_media").addClass("active").siblings().removeClass("active");
+        $("#title").tooltip({html : true });
+    });
+</script>
+{% end %}

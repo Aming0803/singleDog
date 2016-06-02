@@ -1,0 +1,44 @@
+{% extends "wx_base.html" %}
+
+{% block content %}
+<div class="span9">
+    <div class="row-fluid">
+        <div class="page-header">
+            <h1>微信上传图文消息内的图片</h1>
+        </div>
+        {% if msg %}
+            <div class="alert alert-danger" role="alert" id="danger">{{ msg }}</div>
+        {% end %}
+        <div class="alert alert-success hidden" role="alert" id="success"></div>
+        <div class="alert alert-danger hidden" role="alert" id="danger"></div>
+        <form class="form-horizontal" enctype="multipart/form-data" action="/app/wx/img/upload" method="post">
+            {% module xsrf_form_html() %}
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="key">选择图片</label>
+                    <div class="controls">
+                        <input type="file" class="input-xlarge" id="img" name="img" />
+                        <a id="title" title="图片仅支持jpg/png格式，大小必须在1MB以下" data-toggle="tooltip" data-placement="right" class="glyphicon glyphicon-question-sign common-margin-left" aria-hidden="true"></a>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input id="submit" type="submit" class="btn btn-success btn-large" value="确定" /> <a class="btn" onclick="reBack()">返回</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+{% end %}
+
+{% block js %}
+<script type="text/javascript">
+    $(function(){
+        $("#img").addClass("active").siblings().removeClass("active");
+        $("#title").tooltip();
+    });
+</script>
+{% end %}

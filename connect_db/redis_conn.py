@@ -22,7 +22,7 @@ class RedisManger(object):
 
 
     def redis_conn(self):
-        pool = redis.ConnectionPool(host=redis_server_env,port=redis_server_port, max_connections=1024)
+        pool = redis.ConnectionPool(host=redis_server_env,port=redis_server_port, password=redis_server_passwd, max_connections=1024)
         return redis.Redis(connection_pool = pool)
 
 

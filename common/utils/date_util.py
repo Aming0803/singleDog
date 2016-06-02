@@ -99,4 +99,20 @@ def get_section_time_by_params(start_time="", num=0):
         end_time = start_time + datetime.timedelta(days=num)
         return True, end_time
 
+def get_part_time(timestamp, num=3):
+    """
+    :param timestamp:时间戳
+    :param num:区间段
+    :return:
+    """
+    if not timestamp:
+        return ""
+
+    date_time_str = timestamp2str(timestamp)
+    date_time = timeFromStr(date_time_str)
+
+    end_time = date_time + datetime.timedelta(days=num)
+    return date_time, end_time
+
+
 

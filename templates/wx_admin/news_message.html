@@ -1,0 +1,78 @@
+{% extends "wx_base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ static_url('css/bootstrap-multiselect.css') }}" type="text/css" media="screen" />
+{% end %}
+
+
+{% block content %}
+<div class="span9">
+    <div class="row-fluid">
+        <div class="page-header">
+            <h1>群发图文消息</h1>
+        </div>
+        <div class="alert alert-success hidden" role="alert" id="success"></div>
+        <div class="alert alert-danger hidden" role="alert" id="danger"></div>
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="control-group news-border" >
+                    <h3>群发图文的过程如下:</h3>
+                    <p>1、首先，预先将图文消息中需要用到的图片，使用上传图文消息内图片接口，上传成功并获得图片URL.</p>
+                    <p>2、上传图文消息素材，需要用到图片时，请使用上一步获取的图片URL.</p>
+                    <p>3、使用对用户标签的群发，或对OpenID列表的群发，将图文消息群发出去.</p>
+                    <p>4、在上述过程中，如果需要，还可以预览图文消息、查询群发状态，或删除已群发的消息等.</p>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="choose">素材选择</label>
+                    <div class="controls">
+                        <input type="radio" class="input-xlarge" id="choose" name="media_choose" value="old"/><span class="common-mg">选择已有素材</span>
+                        <input type="radio" class="input-xlarge" id="choose" name="media_choose" value="new"/><span class="common-mg">重新上传素材</span>
+                    </div>
+                </div>
+
+                <div class="control-group hidden" id="old_media">
+                    <label class="control-label" for="has_media_id">选择已有素材</label>
+                    <div class="controls">
+                        <select id="media_id">
+                            {% if media_list %}
+                                {% for media in media_list %}
+                                    <option value="{{ media.media_id }}">{{ media.source }}</option>
+                                {% end %}
+                            {% end %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group hidden" id="new_media">
+                    <label class="control-label" for="multi-select">选择上传图文</label>
+                    <div class="controls">
+                        <select id="multi-select" multiple="multiple" >
+                            {% if article_list %}
+                                {% for article in article_list %}
+                                    <option value="{{ article.id }}">{{ article.title }}</option>
+                                {% end %}
+                            {% end %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input id="submit_tag" type="button" class="btn btn-success btn-large" value="标签分组群发" />
+                    <input id="submit_openid" type="button" class="btn btn-success btn-large" value="根据openid群发" />
+                    <a class="btn" onclick="reBack()">返回</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/bootstrap-multiselect.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/tornado_xsrf.js') }}"></script>
+<script type="text/javascript" src="{{ static_url("js/tools/message_news.js") }}"></script>
+{% end %}

@@ -176,4 +176,5 @@ class WXChatBase(object):
         进入首页信息
         :return:
         """
+
         return self.response_text(WX_ACCESS_INDEX)

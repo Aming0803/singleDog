@@ -1,0 +1,79 @@
+{% extends "wx_base.html" %}
+
+{% block content %}
+<div class="span9">
+    {% from common.utils.template_util import MEDIA_TYPE %}
+    <div class="row-fluid">
+        <div class="page-header">
+            <h1>微信添加永久其他素材</h1>
+        </div>
+        {% if msg %}
+            <div class="alert alert-danger" role="alert" id="danger">{{ msg }}</div>
+        {% end %}
+        <div class="alert alert-danger hidden" role="alert" id="danger"></div>
+        <form class="form-horizontal" enctype="multipart/form-data" action="/admin/wx/per/media/add" method="post">
+            {% module xsrf_form_html() %}
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="type">素材类型</label>
+                    <div class="controls">
+                        <select name="type" id="type" class="input-xlarge">
+                            {% for key, val in MEDIA_TYPE.iteritems() %}
+                                <option value="{{ key }}" >{{ val }}</option>
+                            {% end %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group hidden" id="title">
+                    <label class="control-label" for="t">标题</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" name="title"  id="t"/>
+                    </div>
+                </div>
+
+                <div class="control-group hidden" id="introduction">
+                    <label class="control-label" for="intro">描述</label>
+                    <div class="controls">
+                        <textarea class="input-xlarge"  rows="3" name="introduction" id="intro"></textarea>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="source">选择素材</label>
+                    <div class="controls">
+                        <input type="file" class="input-xlarge" id="source" name="source" />
+                        <a id="title" title="&lt;p&gt;1.图片大小不超过2M，支持bmp/png/jpeg/jpg/gif格式.&lt;/p&gt;&lt;p&gt;2.语音大小不超过5M，长度不超过60秒，支持mp3/wma/wav/amr格式.&lt;/p&gt;" data-toggle="tooltip" data-placement="right" class="glyphicon glyphicon-question-sign common-margin-left" aria-hidden="true"></a>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <input id="submit" type="submit" class="btn btn-success btn-large" value="确定" /> <a class="btn" onclick="reBack()">返回</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+{% end %}
+
+{% block js %}
+<script type="text/javascript">
+    $(function(){
+        $("#permanent_media").addClass("active").siblings().removeClass("active");
+        $("#title").tooltip({html : true });
+        $("#type").change(function(){
+            var val = $(this).val();
+            if(val === "video"){
+                $("#title").removeClass("hidden");
+                $("#introduction").removeClass("hidden");
+            }else{
+                $("#title").addClass("hidden");
+                $("#introduction").addClass("hidden");
+            }
+        })
+    });
+</script>
+{% end %}

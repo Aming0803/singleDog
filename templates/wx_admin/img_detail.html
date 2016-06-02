@@ -1,0 +1,46 @@
+{% extends "wx_base.html" %}
+
+{% block content %}
+<div class="span9">
+		  <div class="row-fluid">
+                <div class="page-header">
+                    <h1>微信上传图文消息内的图片详情</h1>
+                </div>
+
+                {% if msg %}
+                    <div class="alert alert-danger" role="alert" id="danger">{{ msg }}</div>
+                {% end %}
+
+                {% if img %}
+                    <table class="table table-striped table-bordered table-condensed">
+                        <tbody>
+                            <tr>
+                                <th>图片原名称</th>
+                                <th>{{ img.source }}</th>
+                            </tr>
+                            <tr>
+                                <th>图片微信URL</th>
+                                <th>{{ img.url }}</th>
+                            </tr>
+                            <tr>
+                                <th>图片显示</th>
+                                <th><img src="{{ static_url('upload/images/'+ img.source) }}" class="img-responsive"></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% end %}
+
+                <div>
+                    <input onclick="reBack()" type="button" class="btn btn-success btn-large" value="返回" />
+                </div>
+		  </div>
+        </div>
+{% end %}
+
+{% block js %}
+<script type="text/javascript">
+    $(function(){
+        $("#img").addClass("active").siblings().removeClass("active");
+    });
+</script>
+{% end %}

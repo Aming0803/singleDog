@@ -5,7 +5,11 @@
     {% from common.utils.template_util import MENU_TYPE %}
     <div class="row-fluid">
         <div class="page-header">
-            <h1>新增菜单</h1>
+            {% if wx_menu %}
+                <h1>编辑菜单</h1>
+            {% else %}
+                <h1>新增菜单</h1>
+            {% end %}
         </div>
         <div class="alert alert-success hidden" role="alert" id="success"></div>
         <div class="alert alert-danger hidden" role="alert" id="danger"></div>

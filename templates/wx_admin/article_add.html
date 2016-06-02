@@ -1,0 +1,89 @@
+{% extends "wx_base.html" %}
+
+{% block content %}
+<div class="span9">
+    <div class="row-fluid">
+        <div class="page-header">
+            <h1>新增图文</h1>
+        </div>
+        <div class="alert alert-danger hidden" role="alert" id="danger"></div>
+        <div class="alert alert-success hidden" role="alert" id="success"></div>
+        <form class="form-horizontal" method="post" action="/admin/wx/article/add">
+            {% module xsrf_form_html() %}
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="title">标题</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" id="title" name="title" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="author">作者</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" id="author" name="author" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="digest">摘要</label>
+                    <div class="controls">
+                        <textarea class="input-xlarge" id="digest" rows="3" name="digest"></textarea>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="content_source_url">原文地址</label>
+                    <div class="controls">
+                        <input type="text" class="input-xlarge" id="content_source_url" name="content_source_url" />
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="thumb_media_id">封面素材</label>
+                    <div class="controls">
+                        <select name="thumb_media_id" id="thumb_media_id" class="input-xlarge">
+                            {% if media_list %}
+                                {% for media in media_list %}
+                                    <option value="{{ media.media_id }}" >{{ media.source }}</option>
+                                {% end %}
+                            {% end %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="show_cover_pic">显示封面</label>
+                    <div class="controls">
+                        <input type="radio" class="input-xlarge" id="show_cover_pic" name="show_cover_pic" value="1"/><span class="common-mg">是</span>
+                        <input type="radio" class="input-xlarge" id="show_cover_pic" name="show_cover_pic" value="0"/><span class="common-mg">否</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="content">图文内容</label>
+                    <div class="controls">
+                        <script id="container" name="content" type="text/plain">
+                        </script>
+                    </div>
+                </div>
+
+
+                <div class="form-actions">
+                    <input id="submit" type="button" class="btn btn-success btn-large" value="确定" /> <a class="btn" onclick="reBack()">返回</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+{% end %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ static_url('js/tornado_xsrf.js') }}"></script>
+    <script type="text/javascript" src="{{ static_url('ueditor/ueditor.config.js') }}"></script>
+    <script type="text/javascript" src="{{ static_url('ueditor/ueditor.all.min.js') }}"></script>
+    <script type="text/javascript" src="{{ static_url("js/tools/add_article.js") }}"></script>
+{% end %}

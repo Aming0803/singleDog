@@ -1,0 +1,73 @@
+{% extends "wx_base.html" %}
+
+{% block content %}
+<div class="span9">
+    {% from common.utils.template_util import REPLY_TYPE %}
+    <div class="row-fluid">
+        <div class="page-header">
+            {% if reply %}
+                <h1>编辑回复规则</h1>
+            {% else %}
+                <h1>新增回复规则</h1>
+            {% end %}
+        </div>
+        <div class="alert alert-success hidden" role="alert" id="success"></div>
+        <div class="alert alert-danger hidden" role="alert" id="danger"></div>
+        <form class="form-horizontal">
+            <fieldset>
+                {% if reply %}
+                    <input name="reply_id" value="{{ reply.id }}" type="hidden" id="reply_id">
+                {% end %}
+                <div class="control-group">
+                    <label class="control-label" for="key">关键字</label>
+                    <div class="controls">
+                        {% if reply %}
+                            <input type="text" class="input-xlarge" id="key" name="key" value="{{ reply.key }}" />
+                        {% else %}
+                            <input type="text" class="input-xlarge" id="key" name="key" />
+                        {% end %}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="reply_type">回复类型</label>
+                    <div class="controls">
+                        <select name="reply_type" id="reply_type" >
+                            {% for key, val in REPLY_TYPE.iteritems() %}
+                                {% if reply and reply.reply_type == key %}
+                                    <option value="{{ key }}" selected="selected">{{ val }}</option>
+                                {% else %}
+                                    <option value="{{ key }}" >{{ val }}</option>
+                                {% end %}
+                            {% end %}
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="content">回复内容</label>
+                    <div class="controls">
+                            {% if reply %}
+                                <textarea class="input-xlarge" id="content" rows="5" name="content">{{ reply.content }}</textarea>
+{#<a id="menu_name" title="一级菜单最多4个汉字，二级菜单最多7个汉字，多出来的部分将会以“...”代替" data-toggle="tooltip" data-placement="right" class="glyphicon glyphicon-question-sign common-margin-left" aria-hidden="true"></a>#}
+                            {% else %}
+                                <textarea class="input-xlarge" id="content" rows="5" name="content"></textarea>
+                            {% end %}
+                    </div>
+                </div>
+
+
+                <div class="form-actions">
+                    <input id="submit" type="button" class="btn btn-success btn-large" value="确定" /> <a class="btn" onclick="reBack()">返回</a>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+{% end %}
+
+{% block js %}
+<script type="text/javascript" src="{{ static_url('js/tornado_xsrf.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('js/tools/editor_reply.js') }}"></script>
+{% end %}

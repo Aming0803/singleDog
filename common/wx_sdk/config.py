@@ -11,6 +11,9 @@ TOKEN_URL = "http://wx.wefresh.me/access"
 TEST_WX_APP_ID = "wx5745c0d13b546619"
 TEST_WX_APP_SECRET = "404b77aef98a66fe7d449eb54264408b"
 
+#######上传图片类型
+WX_UPLOAD_IMAGE_TYPE = [u"image/jpeg", u"image/png"]
+
 
 
 

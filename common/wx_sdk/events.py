@@ -135,6 +135,25 @@ class WXViewEvent(WXEventBase):
         super(WXViewEvent, self).__init__(message)
 
 
+@event_type("messsendjobfinish")
+class WXMessageSendALLEvent(WXEventBase):
+
+    def __init__(self, message):
+        """
+        群发任务结束回调事件
+        :param message:
+        :return:
+        """
+        self.msg_id = message.pop("MsgID", "")
+        self.status = message.pop("Status", "")
+        self.total_count = int(message.pop("TotalCount", 0))
+        self.filter_count = int(message.pop("FilterCount", 0))
+        self.send_count = int(message.pop("SentCount", 0))
+        self.error_count = int(message.pop("ErrorCount", 0))
+        super(WXMessageSendALLEvent, self).__init__(message)
+
+
+
 
 
 

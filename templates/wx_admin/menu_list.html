@@ -5,14 +5,14 @@
     {% from common.utils.template_util import get_menu_name_by_category, get_parent_menu_name, get_menu_type_name %}
 		  <div class="row-fluid">
 			<div class="page-header">
-				<h1>微信用户列表 <small>用户管理</small></h1>
+				<h1>微信菜单管理 <small>菜单列表</small></h1>
 			</div>
 			<table class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
+                        <th>父级菜单</th>
+                        <th>菜单级别</th>
 						<th>菜单名称</th>
-						<th>菜单级别</th>
-						<th>父级菜单</th>
 						<th>菜单类型</th>
 						<th>菜单属性</th>
 						<th>操作</th>
@@ -22,9 +22,9 @@
                 {% if menu_list %}
                     {% for menu in menu_list %}
                         <tr class="list-users">
-                            <td>{{ menu.name }}</td>
-                            <td>{{ get_menu_name_by_category(menu.category) }}</td>
                             <td>{{ get_parent_menu_name(menu.parent_id) }}</td>
+                            <td>{{ get_menu_name_by_category(menu.category) }}</td>
+                            <td>{{ menu.name }}</td>
                             <td>{{ get_menu_type_name(menu.menu_type) }}</td>
                             <td>{{ menu.value }}</td>
                             <td>
@@ -44,7 +44,7 @@
 			</table>
             <ul id="pagination"></ul>
 			<a href="/admin/wx/menu/editor" class="btn btn-success">新建菜单</a>
-            <a href="/app/wx/menu/create" class="btn btn-warning common-fr">生成微信菜单</a>
+            <a href="/app/wx/menu/create" class="btn btn-success">创建微信菜单</a>
 		  </div>
         </div>
 
