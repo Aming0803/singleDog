@@ -10,7 +10,6 @@ from .replies import (
     TextReply, ImageReply, MusicReply, VideoReply, VoiceReply, Article, ArticleReply
 )
 from .parser import XMLStore
-from .utils import to_text, to_binary
 from .config import WX_ACCESS_INDEX
 from common.utils.pwd_util import create_sha1
 

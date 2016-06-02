@@ -135,7 +135,7 @@ class WXViewEvent(WXEventBase):
         super(WXViewEvent, self).__init__(message)
 
 
-@event_type("messsendjobfinish")
+@event_type("masssendjobfinish")
 class WXMessageSendALLEvent(WXEventBase):
 
     def __init__(self, message):
