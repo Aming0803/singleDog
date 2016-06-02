@@ -85,11 +85,11 @@ class WxIndexHandler(AppBaseHandler):
         resp = ""
         #todo:用户订阅或者取消订阅时候, 用户操作
         if event == "subscribe":
-            create_wx_user.apply_async((openid))
+            create_wx_user.apply_async((openid,))
             resp = wx_chat.get_access_index()
 
         if event == "unsubscribe":
-            create_wx_user.apply_async((openid))
+            create_wx_user.apply_async((openid,))
 
         #todo:用户地理位置信息
         if event == "location":
