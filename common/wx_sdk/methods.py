@@ -37,15 +37,17 @@ def create_wx_user_by_openid_method(openid):
     :param openid:
     :return:
     """
-    #ps.2.请求用户信息接口
+    log.info(u"**************用户openid:%s***********" % openid)
+    #ps.请求用户信息接口
     wx_user_api = WXUserInfoApi()
     success, data = wx_user_api.make_request(openid)
     if not success:
         return False, data
 
+    log.info(u"***********微信请求用户信息:%s*********" % data)
     #ps.判断该用户是否已保存, 已存在则更新订阅时间
     wx_user_ser = WXUserService()
-    success, msg = wx_user_ser.handle_user_by_subscribe_event(openid, **data)
+    success, msg = wx_user_ser.handle_user_by_subscribe_event(openid, data)
     return success, msg
 
 

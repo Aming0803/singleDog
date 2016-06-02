@@ -188,11 +188,11 @@ class WXUserService(object):
             self.db.rollback()
             return False, "更新失败"
 
-    def handle_user_by_subscribe_event(self, openid, **kwargs):
+    def handle_user_by_subscribe_event(self, openid, kwargs):
         """
         处理订阅事件
         :param openid:
-        :param kwargs:
+        :param kwargs:字典
         :return:
         """
         user = self.get_user_by_openid(openid)
